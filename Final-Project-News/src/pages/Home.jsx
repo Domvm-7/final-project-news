@@ -2,11 +2,11 @@ import SearchForm from "../components/SearchForm/SearchForm";
 import Main from "../components/Main/Main";
 import About from "../components/About/About";
 
-function Home() {
+function Home({ onSearch, articles }) {
   return (
     <>
-      <SearchForm />
-      <Main />
+      <SearchForm onSearch={onSearch} />
+      <Main articles={articles} />
       <About />
     </>
   );

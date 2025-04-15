@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import AppRouter from "../../routes/AppRouter";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import mockNews from "../../utils/mockNews";
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -11,6 +12,20 @@ function App() {
   const closeAllModals = () => {
     setIsLoginOpen(false);
     setIsRegisterOpen(false);
+  };
+
+  const [filteredArticles, setFilteredArticles] = useState([]);
+
+  const handleSearch = (query) => {
+    const results = mockNews.filter((article) => {
+      const searchText = query.toLowerCase();
+      return (
+        article.title.toLowerCase().includes(searchText) ||
+        article.description.toLowerCase().includes(searchText)
+      );
+    });
+
+    setFilteredArticles(results);
   };
 
   // Handle Escape key
@@ -31,6 +46,8 @@ function App() {
           console.log("Login modal should open");
           setIsLoginOpen(true);
         }}
+        onSearch={handleSearch}
+        articles={filteredArticles}
       />
 
       <LoginModal
