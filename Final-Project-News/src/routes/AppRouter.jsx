@@ -4,10 +4,10 @@ import SavedNews from "../pages/SavedNews";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
-function AppRouter() {
+function AppRouter({ onLoginClick }) {
   return (
     <Router>
-      <Header />
+      <Header onLoginClick={onLoginClick} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/saved-news" element={<SavedNews />} />

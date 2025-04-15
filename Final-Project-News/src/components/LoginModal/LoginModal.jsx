@@ -1,10 +1,19 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal() {
+function LoginModal({ isOpen, onClose, onSwitch }) {
   return (
-    <ModalWithForm>
-      <h2>Sign In</h2>
-      {/* Form Fields */}
+    <ModalWithForm isOpen={isOpen} onClose={onClose} title="Sign In">
+      <form>
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Sign In</button>
+      </form>
+      <p>
+        Not registered?{" "}
+        <button type="button" onClick={onSwitch}>
+          Sign Up
+        </button>
+      </p>
     </ModalWithForm>
   );
 }
